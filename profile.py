@@ -34,10 +34,12 @@ rspec = RSpec.Request()
 lan = RSpec.LAN()
 rspec.addResource(lan)
 
-skiplist = ["ms%02d%02d" % (params.chassis, int(x)) for x in params.skip.split(",") if x]
+# skiplist = ["ms%02d%02d" % (params.chassis, int(x)) for x in params.skip.split(",") if x]
 
-nodes_per_chassis = 45
-num_nodes = nodes_per_chassis - len(skiplist)
+# nodes_per_chassis = 45
+nodes_per_chassis = 4
+# num_nodes = nodes_per_chassis - len(skiplist)
+num_nodes = nodes_per_chassis
 
 rc_aliases = ["rcmaster", "rcnfs"]
 for i in range(num_nodes - 2):
@@ -45,10 +47,10 @@ for i in range(num_nodes - 2):
 
 n = 0
 for i in range(nodes_per_chassis):
-    name = "ms%02d%02d" % (params.chassis, i + 1)
+    # name = "ms%02d%02d" % (params.chassis, i + 1)
 
-    if name in skiplist:
-        continue
+    # if name in skiplist:
+        # continue
 
     rc_alias = rc_aliases[n]
     node = RSpec.RawPC(rc_alias)
@@ -61,7 +63,7 @@ for i in range(nodes_per_chassis):
 
     node.hardware_type = params.type
     node.disk_image = urn.Image(cloudlab.Utah,"emulab-ops:%s" % params.image)
-    node.component_id = urn.Node(cloudlab.Utah, name)
+    # node.component_id = urn.Node(cloudlab.Utah, name)
 
     node.addService(RSpec.Execute(
             shell="sh", command="sudo /local/repository/startup.sh"))
