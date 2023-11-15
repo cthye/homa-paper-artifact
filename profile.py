@@ -37,7 +37,7 @@ rspec.addResource(lan)
 # skiplist = ["ms%02d%02d" % (params.chassis, int(x)) for x in params.skip.split(",") if x]
 
 # nodes_per_chassis = 45
-nodes_per_chassis = 3
+nodes_per_chassis = 4
 # num_nodes = nodes_per_chassis - len(skiplist)
 num_nodes = nodes_per_chassis
 
